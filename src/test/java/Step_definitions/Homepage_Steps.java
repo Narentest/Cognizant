@@ -7,11 +7,19 @@ import cucumber.api.java.en.When;
 public class Homepage_Steps {
 
 
- @Given("^User launched the Firefox$")
+  @Given("^User launched the Firefox$")
  public void user_launched_the_Firefox() throws Throwable {
-  
- 
- }
+
+
+    WebDriver driver=new FirefoxDriver();
+
+    driver.manage().window().maximize();
+
+    driver.manage().timeouts().pageLoadTimeout(1, TimeUnit.SECONDS);
+
+    driver.get("https://www.theguardian.com/tone/news");
+
+   }
 
  @When("^User enters \"([^\"]*)\"$")
  public void user_enters(String arg1) throws Throwable {
