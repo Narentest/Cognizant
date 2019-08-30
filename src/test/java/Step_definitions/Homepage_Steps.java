@@ -7,7 +7,10 @@ import cucumber.api.java.en.When;
 public class Homepage_Steps {
 
 
-  @Given("^User launched the Firefox$")
+  WebDriver driver;
+
+
+ @Given("^User launched the Firefox$")
  public void user_launched_the_Firefox() throws Throwable {
 
 
@@ -17,26 +20,28 @@ public class Homepage_Steps {
 
     driver.manage().timeouts().pageLoadTimeout(1, TimeUnit.SECONDS);
 
-    driver.get("https://www.theguardian.com/tone/news");
-
    }
 
  @When("^User enters \"([^\"]*)\"$")
  public void user_enters(String arg1) throws Throwable {
-  
+  driver.get("https://www.theguardian.com/tone/news");
  
  }
 
  @Then("^Website should be launched$")
  public void website_should_be_launched() throws Throwable {
-  
- 
+
+  String Title = driver.getTitle();
+
+  Assert.assertEquals(Title, "TheGuardian" );
  }
 
  @Then("^Validate the expected weblink and entered weblink are same$")
  public void validate_the_expected_weblink_and_entered_weblink_are_same() throws Throwable {
-  
- 
+
+  String URL = driver.getCurrentUrl();
+
+  Assert.assertEquals(URL, "https://www.theguardian.com/tone/news" );
  }
 
  @Given("^User landed on the guardian website$")
